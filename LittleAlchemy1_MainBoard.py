@@ -6,9 +6,17 @@ import random
 
 
 #2. Initialize game!
+    #2.1 create background
+def back(x,y):
+    global.gamepad, background
+    gamepad.blit(background, (x,y))
+background_x=0
+
 pygame.init()
-width, height=1280,960
+width, height=800,600
 screen=pygame.display.set_mode((width, height))
+#추가함
+background = pygame.image.load('images/background.png')
 pos_fire=[50,700]
 pos_steam=[250,700]
 pos_wood=[400,700]
@@ -18,6 +26,7 @@ monstimer=100 #monster 타이머 : 얘가 0이 되면 리젠
 monstimer1=0 #monstimer가 0이 되도록 조절한다.
 monspos=[[640,100]]
 healthvalue=190
+
 
 #3. Load images
 fire=pygame.image.load("resources/images/fire.jpg")
@@ -102,5 +111,7 @@ while 1:
           material[0]+=5
         elif event.key==K_LEFT:
             material[0]-=5
+    #others
+    back(background_x,0)        
 
 

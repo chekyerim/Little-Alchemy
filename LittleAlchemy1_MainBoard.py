@@ -2,23 +2,17 @@
 import pygame,os, sys
 from pygame.locals import *
 #1-1. Make it easier
-class Character:
-    def __init__(self, rect):
-        self.rect=pygame.Rect(rect)
-        self.click.False
-        self.image=pygame.Surface(self, rect.size).convert()
-        self.image.fill((255,0,0))
-    def update(self,surface):
-        if self.click:
-                self.rect.center=pygame.mouse.get_pos()
-        surface.blit(self.image, self.rect)
-def main(Screen, Player)
-   # game_event
+
 
 #2. Initialize game!
 pygame.init()
 width, height=1280,960
 screen=pygame.display.set_mode((width, height))
+pos_fire=[50,700]
+pos_steam=[250,700]
+pos_wood=[400,700]
+pos_lib=[pos_fire,pos_steam,pos_wood]
+keys=[False,False,False,False]
 
 #3. Load images
 fire=pygame.image.load("resources/images/fire.jpg")
@@ -31,14 +25,11 @@ while 1:
     screen.fill(0)
 
     #6. place the elements
-    screen.blit(fire, (50, 700))
-    screen.blit(steam, (250, 700))
-    screen.blit(wood, (450, 700))
+    screen.blit(fire, pos_fire)
+    screen.blit(steam, pos_steam)
+    screen.blit(wood, pos_wood)
     #6-1. Method for moving elements
-    position=pygame.mouse.get_pos()
-    pos_fire=fire.get_rect()
-    pos_steam=steam.get_rect()
-    pos_wood=wood.get_rect()
+
 
     #7. update the screen
     pygame.display.flip()
@@ -51,14 +42,27 @@ while 1:
             pygame.quit()
             exit(0)
         #Move elements
-        if event.type==pygame.MOUSEBUTTONDOWN:
-            if fire.rect.collidepoint(event.pos) :
-                pos_fire = position
-            elif fire.rect.collidepoint(event.pos) :
-                pos_steam == position
-            elif wood.rect.collidepoint(event.pos) :
-                pos_wood == position
-    screen.blit(fire, pos_fire)
-    screen.blit(steam,pos_steam)
-    screen.blit(wood, pos_wood)
+
+
+    #9 - Move player
+    #9.1- Select Material
+    if event.type==pygame.KEYDOWN:
+        if event.key==K_f:
+            material=pos_lib[0]
+        if event.key==K_s:
+            material=pos_lib[1]
+        if event.key==K_w:
+            material=pos_lib[2]
+
+
+    if event.type==pygame.KEYDOWN:
+        if event.key==K_UP:
+           material[1]-=5
+        elif event.key==K_DOWN:
+            material[1]+=5
+        if event.key==K_RIGHT:
+          material[0]+=5
+        elif event.key==K_LEFT:
+            material[0]-=5
+
 

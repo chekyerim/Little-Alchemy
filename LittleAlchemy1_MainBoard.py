@@ -54,7 +54,6 @@ while 1:
         if event.key==K_w:
             material=pos_lib[2]
 
-
     if event.type==pygame.KEYDOWN:
         if event.key==K_UP:
            material[1]-=5
